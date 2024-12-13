@@ -1,0 +1,2 @@
+alibabacloud_cas20200407==2.0.4
+alibabacloud-cdn20180510==4.1.0

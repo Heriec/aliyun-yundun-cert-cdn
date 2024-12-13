@@ -1,0 +1,35 @@
+name: Auto Renew and Deploy SSL Certificates
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 20 */2 *' # 每两个月的第二十天执行一次
+
+jobs:
+  renew-deploy-cert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+
+    - name: Upload certificates to Alibaba Cloud CDN
+      env:
+        ALIYUN_ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+        ALIYUN_ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+        DOMAIN: ${{ secrets.DOMAIN }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PHONE: ${{ secrets.PHONE }}
+        EMAIL: ${{ secrets.EMAIL }}
+        FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}  
+      run: python main.py
