@@ -25,8 +25,8 @@ jobs:
 
     - name: Upload certificates to Alibaba Cloud CDN
       env:
-        ALIYUN_ACCESS_KEY_ID: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-        ALIYUN_ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+        ALIBABA_CLOUD_ACCESS_KEY_ID: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_ID }}
+        ALIBABA_CLOUD_ACCESS_KEY_SECRET: ${{ secrets.ALIBABA_CLOUD_ACCESS_KEY_SECRET }}
         DOMAIN: ${{ secrets.DOMAIN }}
         USERNAME: ${{ secrets.USERNAME }}
         PHONE: ${{ secrets.PHONE }}
